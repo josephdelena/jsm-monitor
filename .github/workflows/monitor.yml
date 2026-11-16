@@ -2,7 +2,7 @@ name: jsm-monitor
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # cek range tiap 5 menit (GitHub bisa telat 5-30 menit)
+    - cron: "2-59/5 * * * *"   # cek range tiap 5 menit (GitHub bisa telat 5-30 menit)
     - cron: "3 0 * * *"     # laporan harian ~07:03 WIB
   workflow_dispatch:
     inputs:
