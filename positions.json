@@ -12,7 +12,21 @@
       "close_actions": [
         "Tarik pool Orca SOL/cbBTC (Withdraw 100% + Harvest)",
         "GMX: tutup short SOL $53.89",
-        "GMX: tutup short BTC $53.63"
+        "GMX: KURANGI short BTC $53.63 saja (sisanya milik cbBTC/USDC)"
+      ]
+    },
+    {
+      "id": "orca-cbbtc-usdc",
+      "label": "Orca cbBTC/USDC 0.04% ($1.072)",
+      "source": "orca",
+      "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
+      "invert": false,
+      "unit": "USDC per cbBTC",
+      "lower": 63655.906,
+      "upper": 66732.344,
+      "close_actions": [
+        "Tarik pool Orca cbBTC/USDC (Withdraw 100% + Harvest)",
+        "GMX: KURANGI short BTC $533 (sisakan $53.63 untuk SOL/cbBTC)"
       ]
     }
   ],
