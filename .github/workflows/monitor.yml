@@ -1,0 +1,61 @@
+name: jsm-monitor
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # cek range tiap 5 menit (GitHub bisa telat 5-30 menit)
+    - cron: "3 0 * * *"     # laporan harian ~07:03 WIB
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "check atau report"
+        type: choice
+        options: [check, report]
+        default: check
+
+concurrency:
+  # report punya grup sendiri supaya tidak dibatalkan oleh check yang antre
+  group: jsm-monitor-${{ (github.event.schedule == '3 0 * * *' || github.event.inputs.mode == 'report') && 'report' || 'check' }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tentukan mode
+        id: mode
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHED: ${{ github.event.schedule }}
+          INPUT_MODE: ${{ github.event.inputs.mode }}
+        run: |
+          MODE=check
+          if [ "$EVENT" = "workflow_dispatch" ] && [ "$INPUT_MODE" = "report" ]; then MODE=report; fi
+          if [ "$SCHED" = "3 0 * * *" ]; then MODE=report; fi
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+
+      - name: Ambil state sebelumnya
+        if: steps.mode.outputs.mode == 'check'
+        uses: actions/cache/restore@v4
+        with:
+          path: state
+          key: jsm-state-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: jsm-state-
+
+      - name: Jalankan
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MODE: ${{ steps.mode.outputs.mode }}
+        run: |
+          mkdir -p state
+          python3 monitor.py "$MODE"
+
+      - name: Simpan state
+        if: always() && steps.mode.outputs.mode == 'check'
+        uses: actions/cache/save@v4
+        with:
+          path: state
+          key: jsm-state-${{ github.run_id }}-${{ github.run_attempt }}

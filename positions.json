@@ -1,0 +1,51 @@
+{
+  "positions": [
+    {
+      "id": "orca-sol-cbbtc",
+      "label": "Orca SOL/cbBTC 0.16%",
+      "source": "orca",
+      "pool": "CeaZcxBNLpJWtxzt58qQmfMBtJY8pQLvursXTJYGQpbN",
+      "invert": true,
+      "unit": "SOL per cbBTC",
+      "lower": 885.86,
+      "upper": 927.93,
+      "close_actions": [
+        "Tarik pool Orca SOL/cbBTC (Withdraw 100% + Harvest)",
+        "GMX: tutup short SOL $53.89",
+        "GMX: kurangi short BTC sekitar $54"
+      ]
+    },
+    {
+      "id": "aero-weth-cbbtc",
+      "label": "Aero WETH/cbBTC CL1",
+      "source": "binance",
+      "symbol": "ETHBTC",
+      "invert": false,
+      "unit": "cbBTC per WETH",
+      "lower": 0.02738,
+      "upper": 0.02871,
+      "close_actions": [
+        "Klaim reward lalu tarik pool Aero WETH/cbBTC CL1",
+        "GMX: tutup short ETH $45.36",
+        "GMX: kurangi short BTC sekitar $45"
+      ]
+    }
+  ],
+  "near_pct": 0.4,
+  "out_repeat_min": 30,
+  "scan": {
+    "majors": [
+      "SOL",
+      "cbBTC",
+      "WBTC",
+      "whETH",
+      "ETH",
+      "USDC",
+      "USDT",
+      "JitoSOL",
+      "zBTC"
+    ],
+    "min_tvl_usd": 1000000,
+    "alert_yield_pct_day": 0.35
+  }
+}
