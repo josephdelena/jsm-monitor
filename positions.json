@@ -12,22 +12,7 @@
       "close_actions": [
         "Tarik pool Orca SOL/cbBTC (Withdraw 100% + Harvest)",
         "GMX: tutup short SOL $53.89",
-        "GMX: kurangi short BTC sekitar $54"
-      ]
-    },
-    {
-      "id": "aero-weth-cbbtc",
-      "label": "Aero WETH/cbBTC CL1",
-      "source": "binance",
-      "symbol": "ETHBTC",
-      "invert": false,
-      "unit": "cbBTC per WETH",
-      "lower": 0.02738,
-      "upper": 0.02871,
-      "close_actions": [
-        "Klaim reward lalu tarik pool Aero WETH/cbBTC CL1",
-        "GMX: tutup short ETH $45.36",
-        "GMX: kurangi short BTC sekitar $45"
+        "GMX: tutup short BTC $53.63"
       ]
     }
   ],
