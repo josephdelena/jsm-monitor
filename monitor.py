@@ -13,6 +13,7 @@ import math
 import os
 import sys
 import time
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone, timedelta
 
@@ -137,12 +138,23 @@ def send(text):
     if not tok or not chat:
         print("(TELEGRAM_BOT_TOKEN/CHAT_ID belum diisi — hanya print)")
         return False
-    url = f"https://api.telegram.org/bot{tok}/sendMessage"
+    url = f"https://api.telegram.org/bot{tok.strip()}/sendMessage"
+    body = json.dumps({"chat_id": chat.strip(), "text": text,
+                       "disable_web_page_preview": True}).encode()
+    req = urllib.request.Request(url, data=body, headers={**UA, "Content-Type": "application/json"})
     try:
-        http_json(url, {"chat_id": chat, "text": text, "disable_web_page_preview": True}, retries=1)
+        with urllib.request.urlopen(req, timeout=15) as r:
+            r.read()
         return True
+    except urllib.error.HTTPError as e:
+        # tampilkan alasan dari Telegram, tanpa token
+        try:
+            desc = json.loads(e.read().decode()).get("description", "")
+        except Exception:  # noqa: BLE001
+            desc = ""
+        print(f"gagal kirim telegram: HTTP {e.code} {desc}")
+        return False
     except Exception as e:  # noqa: BLE001
-        # jangan print token
         print(f"gagal kirim telegram: {type(e).__name__}")
         return False
 
