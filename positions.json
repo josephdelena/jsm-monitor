@@ -1,21 +1,6 @@
 {
   "positions": [
     {
-      "id": "orca-cbbtc-usdc",
-      "label": "Orca cbBTC/USDC 0.04% ($1.072)",
-      "source": "orca",
-      "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
-      "invert": false,
-      "unit": "USDC per cbBTC",
-      "lower": 63655.906,
-      "upper": 66732.344,
-      "close_actions": [
-        "KELUAR ATAS (>66.732): SL GMX otomatis tutup short BTC $533 di 66.750 -> tarik pool Orca cbBTC/USDC",
-        "KELUAR BAWAH (<63.656): Stop Market GMX tambah short $539 di 63.600 -> tarik pool, swap cbBTC ke USDC, lalu Close SEMUA short BTC",
-        "Setelah tutup: batalkan order sisa di tab Orders GMX Arbitrum"
-      ]
-    },
-    {
       "id": "uni-avax-usdc",
       "label": "Uniswap AVAX/USDC 0.05% ($744)",
       "source": "binance",
