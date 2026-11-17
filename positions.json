@@ -25,8 +25,24 @@
       "lower": 63655.906,
       "upper": 66732.344,
       "close_actions": [
-        "Tarik pool Orca cbBTC/USDC (Withdraw 100% + Harvest)",
-        "GMX: KURANGI short BTC $533 (sisakan $53.63 untuk SOL/cbBTC)"
+        "KELUAR ATAS (>66.732): SL GMX otomatis kurangi short BTC $533 di 66.750 -> tarik pool Orca cbBTC/USDC",
+        "KELUAR BAWAH (<63.656): Stop Market GMX tambah short $539 di 63.600 -> tarik pool, swap cbBTC ke USDC, KURANGI short BTC $1.072 (sisakan $53.63)",
+        "Setelah tutup: batalkan order sisa di tab Orders GMX Arbitrum"
+      ]
+    },
+    {
+      "id": "uni-avax-usdc",
+      "label": "Uniswap AVAX/USDC 0.05% ($744)",
+      "source": "binance",
+      "symbol": "AVAXUSDT",
+      "invert": false,
+      "unit": "USD per AVAX",
+      "lower": 6.62141,
+      "upper": 7.57839,
+      "close_actions": [
+        "KELUAR ATAS (>7.58): SL GMX otomatis tutup short di 7.60 -> tarik pool Uniswap (Remove liquidity 100%)",
+        "KELUAR BAWAH (<6.62): Stop Market GMX otomatis tambah short di 6.60 -> tarik pool, swap AVAX ke USDC, lalu Close SEMUA short AVAX",
+        "Setelah tutup: batalkan order sisa di tab Orders GMX Avalanche"
       ]
     }
   ],
