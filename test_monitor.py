@@ -4,6 +4,12 @@ os.environ["JSM_STATE"] = os.path.join(tempfile.mkdtemp(), "s", "state.json")
 os.environ.pop("TELEGRAM_BOT_TOKEN", None)
 import monitor as m
 
+FIXTURE = {"near_pct":0.4,"out_repeat_min":30,"positions":[
+ {"id":"orca-sol-cbbtc","label":"Orca SOL/cbBTC","source":"orca","pool":"x","invert":True,"unit":"SOL per cbBTC","lower":885.86,"upper":927.93,
+  "close_actions":["Tarik pool","tutup short SOL $53.89","tutup short BTC"]},
+ {"id":"aero","label":"Aero","source":"binance","symbol":"X","unit":"x","lower":0.02738,"upper":0.02871,"close_actions":["Tarik pool"]}]}
+def load_cfg(): return json.loads(json.dumps(FIXTURE))
+
 class T(unittest.TestCase):
     def test_classify(self):
         self.assertEqual(m.classify(900, 885.86, 927.93, 0.4)[0], "in")
@@ -22,7 +28,7 @@ class T(unittest.TestCase):
         self.assertFalse(m.decide_alert("out_low", {"status":"out_low","last_alert":1000}, 1000+29*60, 30))
         self.assertTrue(m.decide_alert("out_low", {"status":"out_low","last_alert":1000}, 1000+31*60, 30))
     def test_check_flow(self):
-        cfg = json.load(open("positions.json"))
+        cfg = load_cfg()
         prices = iter([900.0, 0.0280, 884.0, 0.0280, 884.0, 0.0280])
         sent = []
         with mock.patch.object(m, "get_price", side_effect=lambda p: next(prices)), \
@@ -38,7 +44,7 @@ class T(unittest.TestCase):
         with mock.patch.object(m, "http_json", return_value=fake):
             f = m.hl_funding(); self.assertAlmostEqual(f["BTC"]["day_pct"], 0.03)
     def test_err_alert(self):
-        cfg = json.load(open("positions.json")); sent=[]
+        cfg = load_cfg(); sent=[]
         with mock.patch.object(m, "get_price", side_effect=RuntimeError("x")), \
              mock.patch.object(m, "send", side_effect=lambda t: sent.append(t) or False):
             m.run_check(cfg); m.run_check(cfg)
@@ -50,7 +56,7 @@ class T2(unittest.TestCase):
         self.assertEqual(m.classify(p, 885.86, 927.93, 0.4)[0], "in")
         self.assertEqual(m.classify(p, 885.86, 927.93, 0.4, "near_low")[0], "near_low")
     def test_failed_send_retries(self):
-        cfg = json.load(open("positions.json")); sent=[]
+        cfg = load_cfg(); sent=[]
         os.environ["TELEGRAM_BOT_TOKEN"]="x"; os.environ["TELEGRAM_CHAT_ID"]="y"
         try:
             prices = iter([884.0, 0.028, 884.0, 0.028])
