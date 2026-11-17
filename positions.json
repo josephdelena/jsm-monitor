@@ -1,21 +1,6 @@
 {
   "positions": [
     {
-      "id": "orca-sol-cbbtc",
-      "label": "Orca SOL/cbBTC 0.16%",
-      "source": "orca",
-      "pool": "CeaZcxBNLpJWtxzt58qQmfMBtJY8pQLvursXTJYGQpbN",
-      "invert": true,
-      "unit": "SOL per cbBTC",
-      "lower": 885.86,
-      "upper": 927.93,
-      "close_actions": [
-        "Tarik pool Orca SOL/cbBTC (Withdraw 100% + Harvest)",
-        "GMX: tutup short SOL $53.89",
-        "GMX: KURANGI short BTC $53.63 saja (sisanya milik cbBTC/USDC)"
-      ]
-    },
-    {
       "id": "orca-cbbtc-usdc",
       "label": "Orca cbBTC/USDC 0.04% ($1.072)",
       "source": "orca",
@@ -25,8 +10,8 @@
       "lower": 63655.906,
       "upper": 66732.344,
       "close_actions": [
-        "KELUAR ATAS (>66.732): SL GMX otomatis kurangi short BTC $533 di 66.750 -> tarik pool Orca cbBTC/USDC",
-        "KELUAR BAWAH (<63.656): Stop Market GMX tambah short $539 di 63.600 -> tarik pool, swap cbBTC ke USDC, KURANGI short BTC $1.072 (sisakan $53.63)",
+        "KELUAR ATAS (>66.732): SL GMX otomatis tutup short BTC $533 di 66.750 -> tarik pool Orca cbBTC/USDC",
+        "KELUAR BAWAH (<63.656): Stop Market GMX tambah short $539 di 63.600 -> tarik pool, swap cbBTC ke USDC, lalu Close SEMUA short BTC",
         "Setelah tutup: batalkan order sisa di tab Orders GMX Arbitrum"
       ]
     },
