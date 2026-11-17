@@ -122,6 +122,11 @@ def alert_text(pos, status, price, d_low, d_high):
         f"Range: {rng}",
         f"Jarak ke bawah: {d_low:+.2f}% | ke atas: {d_high:+.2f}%",
     ]
+    if status == "in":
+        lines.append("")
+        lines.append("Kalau sebelumnya sempat KELUAR dan SL/Stop Market GMX sudah kena: "
+                     "ukuran short sekarang salah. Kembalikan short ke ukuran awal "
+                     f"({pos.get('hedge_usd', 'lihat catatan')}) dan pasang ulang order, atau tutup set.")
     if status.startswith("out"):
         lines.append("")
         lines.append("TUTUP SEKARANG (bareng):")
@@ -285,6 +290,13 @@ def run_report(cfg):
                          + ", ".join(r["pair"] for r in hot))
     except Exception as e:  # noqa: BLE001
         lines.append(f"Scan Orca: gagal ({e})")
+    try:
+        import scanner
+        res, n = scanner.run(top=6)
+        lines.append("")
+        lines.append(scanner.fmt(res, n))
+    except Exception as e:  # noqa: BLE001
+        lines.append(f"Scanner: gagal ({e})")
     send("\n".join(lines))
 
 
