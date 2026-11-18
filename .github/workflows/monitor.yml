@@ -59,6 +59,7 @@ jobs:
       - name: Catat fee on-chain (maks sekali per jam)
         if: steps.mode.outputs.mode == 'check'
         continue-on-error: true
+        timeout-minutes: 4
         run: |
           python3 feelog.py
           if [ -n "$(git status --porcelain data/)" ]; then

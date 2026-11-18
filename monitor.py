@@ -298,6 +298,16 @@ def run_report(cfg):
     except Exception as e:  # noqa: BLE001
         lines.append(f"Scanner: gagal ({e})")
     send("\n".join(lines))
+    # peluang dikirim terpisah supaya pesan tidak lewat batas 4096 karakter Telegram
+    try:
+        import peluang
+        pres, perrs = peluang.run()
+        send(peluang.fmt(pres, perrs))
+        hot = peluang.alerts(pres)
+        if hot:
+            send(peluang.fmt_alert(hot))
+    except Exception as e:  # noqa: BLE001
+        send(f"💡 Peluang: gagal ({e})")
 
 
 def main():
