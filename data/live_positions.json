@@ -1,6 +1,6 @@
 {
- "ts_unix": 1795057237,
- "ts_wib": "2026-11-19 10:00",
+ "ts_unix": 1795060840,
+ "ts_wib": "2026-11-19 11:00",
  "owner": "0xDab08002447CEd3778D4f7e21CE1967fFd3BC2CF",
  "positions": [
   {
@@ -11,16 +11,16 @@
    "pair": "WETH/USDC",
    "fee_tier": 0.003,
    "pool": "0x6c561b446416e1a00e8e93e221854d6ea4171372",
-   "price": 1771.726479,
+   "price": 1788.089759,
    "range": [
     1779.394557,
     1790.10248
    ],
-   "in_range": false,
-   "value_usd": 991.91,
-   "fees_usd": 0.0,
-   "coin_amount": 0.559857,
-   "usdc_amount": 0.0
+   "in_range": true,
+   "value_usd": 999.09,
+   "fees_usd": 2.04,
+   "coin_amount": 0.10485,
+   "usdc_amount": 811.61
   },
   {
    "key": "avax:90649",
@@ -30,16 +30,16 @@
    "pair": "WAVAX/USDC",
    "fee_tier": 0.0005,
    "pool": "0xfae3f424a0a47706811521e3ee268f00cfb5c45e",
-   "price": 6.974351,
+   "price": 7.067296,
    "range": [
     6.621409,
     7.578395
    ],
    "in_range": true,
-   "value_usd": 738.04,
-   "fees_usd": 7.75,
-   "coin_amount": 64.919059,
-   "usdc_amount": 285.27
+   "value_usd": 743.58,
+   "fees_usd": 7.95,
+   "coin_amount": 54.390562,
+   "usdc_amount": 359.19
   },
   {
    "key": "orca:GuxMPuYkDmbxS8JvLUU5STBoCeJuAxgQMUAAuQFrLacB",
@@ -49,16 +49,16 @@
    "pair": "cbBTC/USDC",
    "fee_tier": 0.0004,
    "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
-   "price": 62537.690359,
+   "price": 63148.762535,
    "range": [
     61478.88905,
     67053.412863
    ],
    "in_range": true,
-   "value_usd": 2122.02,
-   "fees_usd": 10.32,
-   "coin_amount": 0.027186,
-   "usdc_amount": 421.89
+   "value_usd": 2137.45,
+   "fees_usd": 10.69,
+   "coin_amount": 0.023337,
+   "usdc_amount": 663.75
   },
   {
    "key": "orca:AS695VhFWmfV8H4X6wX5r4N7SNNMtpwjvubUB8rUMteT",
@@ -68,16 +68,16 @@
    "pair": "SOL/USDC",
    "fee_tier": 0.0004,
    "pool": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE",
-   "price": 73.064045,
+   "price": 74.196782,
    "range": [
     73.691368,
     74.521309
    ],
-   "in_range": false,
-   "value_usd": 993.67,
-   "fees_usd": 7.15,
-   "coin_amount": 13.6,
-   "usdc_amount": 0.0
+   "in_range": true,
+   "value_usd": 1006.97,
+   "fees_usd": 7.84,
+   "coin_amount": 5.290754,
+   "usdc_amount": 614.42
   }
  ],
  "errors": [],
