@@ -1,6 +1,6 @@
 {
- "ts_unix": 1795082439,
- "ts_wib": "2026-11-19 17:00",
+ "ts_unix": 1795086041,
+ "ts_wib": "2026-11-19 18:00",
  "owner": "0xDab08002447CEd3778D4f7e21CE1967fFd3BC2CF",
  "positions": [
   {
@@ -11,16 +11,16 @@
    "pair": "WETH/USDC",
    "fee_tier": 0.003,
    "pool": "0x6c561b446416e1a00e8e93e221854d6ea4171372",
-   "price": 1802.995521,
+   "price": 1805.904714,
    "range": [
     1800.874841,
     1822.614429
    ],
    "in_range": true,
-   "value_usd": 1038.29,
-   "fees_usd": 0.44,
-   "coin_amount": 0.519268,
-   "usdc_amount": 102.06
+   "value_usd": 1039.69,
+   "fees_usd": 0.8,
+   "coin_amount": 0.441734,
+   "usdc_amount": 241.96
   },
   {
    "key": "avax:90698",
@@ -30,16 +30,16 @@
    "pair": "?/USDC",
    "fee_tier": 0.0005,
    "pool": "0x2e587b9e7aa638d7eb7db5fe7447513bc4d0d28b",
-   "price": 63816.041619,
+   "price": 63783.026707,
    "range": [
     63630.449947,
     64334.213311
    ],
    "in_range": true,
-   "value_usd": 1002.98,
-   "fees_usd": 0.83,
-   "coin_amount": 0.011551,
-   "usdc_amount": 265.83
+   "value_usd": 1002.59,
+   "fees_usd": 1.13,
+   "coin_amount": 0.012292,
+   "usdc_amount": 218.57
   },
   {
    "key": "orca:9peBGwopHZ8qKuBAg9t18PukjQoqgKrK8zNDGudXD8Bq",
@@ -49,16 +49,16 @@
    "pair": "cbBTC/USDC",
    "fee_tier": 0.0004,
    "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
-   "price": 63807.348709,
+   "price": 63748.601671,
    "range": [
     63528.727713,
     64167.169959
    ],
    "in_range": true,
-   "value_usd": 1035.19,
-   "fees_usd": 1.33,
-   "coin_amount": 0.009122,
-   "usdc_amount": 453.12
+   "value_usd": 1034.61,
+   "fees_usd": 1.74,
+   "coin_amount": 0.010619,
+   "usdc_amount": 357.66
   },
   {
    "key": "orca:GuxMPuYkDmbxS8JvLUU5STBoCeJuAxgQMUAAuQFrLacB",
@@ -68,16 +68,16 @@
    "pair": "cbBTC/USDC",
    "fee_tier": 0.0004,
    "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
-   "price": 63807.348709,
+   "price": 63748.601671,
    "range": [
     61478.88905,
     67053.412863
    ],
    "in_range": true,
-   "value_usd": 2151.47,
-   "fees_usd": 11.84,
-   "coin_amount": 0.019251,
-   "usdc_amount": 923.11
+   "value_usd": 2150.33,
+   "fees_usd": 11.93,
+   "coin_amount": 0.019613,
+   "usdc_amount": 900.03
   }
  ],
  "errors": [],
