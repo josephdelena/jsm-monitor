@@ -59,14 +59,15 @@ jobs:
       - name: Catat fee on-chain (maks sekali per jam)
         if: steps.mode.outputs.mode == 'check'
         continue-on-error: true
-        timeout-minutes: 4
+        timeout-minutes: 6
         run: |
           python3 feelog.py
+          python3 posisi.py || true
           if [ -n "$(git status --porcelain data/)" ]; then
             git config user.name "jsm-monitor"
             git config user.email "jsm-monitor@users.noreply.github.com"
-            git add data/feegrowth.csv
-            git commit -q -m "feelog $(date -u +%Y-%m-%dT%H:%MZ)"
+            git add data/feegrowth.csv data/live_positions.json 2>/dev/null || git add data/
+            git commit -q -m "data $(date -u +%Y-%m-%dT%H:%MZ)"
             git pull -q --rebase && git push -q
           fi
 
