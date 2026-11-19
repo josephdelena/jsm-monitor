@@ -1,46 +1,8 @@
 {
- "ts_unix": 1795068040,
- "ts_wib": "2026-11-19 13:00",
+ "ts_unix": 1795071638,
+ "ts_wib": "2026-11-19 14:00",
  "owner": "0xDab08002447CEd3778D4f7e21CE1967fFd3BC2CF",
  "positions": [
-  {
-   "key": "base:6611223",
-   "chain": "base",
-   "dex": "Uniswap v3",
-   "id": 6611223,
-   "pair": "WETH/USDC",
-   "fee_tier": 0.003,
-   "pool": "0x6c561b446416e1a00e8e93e221854d6ea4171372",
-   "price": 1799.767752,
-   "range": [
-    1779.394557,
-    1790.10248
-   ],
-   "in_range": false,
-   "value_usd": 999.2,
-   "fees_usd": 2.51,
-   "coin_amount": 0.0,
-   "usdc_amount": 999.2
-  },
-  {
-   "key": "avax:90649",
-   "chain": "avax",
-   "dex": "Uniswap v3",
-   "id": 90649,
-   "pair": "WAVAX/USDC",
-   "fee_tier": 0.0005,
-   "pool": "0xfae3f424a0a47706811521e3ee268f00cfb5c45e",
-   "price": 7.04705,
-   "range": [
-    6.621409,
-    7.578395
-   ],
-   "in_range": true,
-   "value_usd": 742.46,
-   "fees_usd": 8.11,
-   "coin_amount": 56.666179,
-   "usdc_amount": 343.13
-  },
   {
    "key": "orca:GuxMPuYkDmbxS8JvLUU5STBoCeJuAxgQMUAAuQFrLacB",
    "chain": "solana",
@@ -49,41 +11,24 @@
    "pair": "cbBTC/USDC",
    "fee_tier": 0.0004,
    "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
-   "price": 63356.450433,
+   "price": 63698.937401,
    "range": [
     61478.88905,
     67053.412863
    ],
    "in_range": true,
-   "value_usd": 2142.16,
-   "fees_usd": 11.23,
-   "coin_amount": 0.022042,
-   "usdc_amount": 745.68
-  },
-  {
-   "key": "orca:AS695VhFWmfV8H4X6wX5r4N7SNNMtpwjvubUB8rUMteT",
-   "chain": "solana",
-   "dex": "Orca",
-   "id": "AS695VhFWmfV8H4X6wX5r4N7SNNMtpwjvubUB8rUMteT",
-   "pair": "SOL/USDC",
-   "fee_tier": 0.0004,
-   "pool": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE",
-   "price": 74.641692,
-   "range": [
-    73.691368,
-    74.521309
-   ],
-   "in_range": false,
-   "value_usd": 1007.83,
-   "fees_usd": 9.22,
-   "coin_amount": 0.0,
-   "usdc_amount": 1007.83
+   "value_usd": 2149.35,
+   "fees_usd": 11.41,
+   "coin_amount": 0.019919,
+   "usdc_amount": 880.51
   }
  ],
  "errors": [],
  "notes": [],
  "closed": [
-  "base:5210354"
+  "avax:90649",
+  "base:5210354",
+  "base:6611223"
  ],
  "closed_since": 1795053918
 }
