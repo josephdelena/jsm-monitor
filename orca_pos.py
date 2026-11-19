@@ -12,7 +12,9 @@ import struct
 import time
 import urllib.request
 
-OWNER_SOL = "BWwccZawD8upih6ubKUQrauD3KvgmsWsypc5XFGz8mv6"  # alamat publik wallet Solana Ef
+OWNERS_SOL = ["BWwccZawD8upih6ubKUQrauD3KvgmsWsypc5XFGz8mv6",  # alamat publik wallet Solana Ef
+              "DMnuhZZTVuh1Cqiw6oukSu98bA96Sx9pg3Qq5LRNGfAU"]  # wallet Solana kedua (19 Nov)
+OWNER_SOL = OWNERS_SOL[0]
 WHIRLPOOL = "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc"
 TOKEN_PROGRAMS = ["TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA", "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"]
 RPC = ["https://api.mainnet-beta.solana.com", "https://solana-rpc.publicnode.com"]
@@ -174,13 +176,14 @@ def accounts(addrs):
 def read_orca(deadline):
     _DL[0] = deadline
     mints = []
-    for prog in TOKEN_PROGRAMS:
-        res = rpc("getTokenAccountsByOwner", [OWNER_SOL, {"programId": prog}, {"encoding": "jsonParsed"}])
-        for acc in res["value"]:
-            info = acc["account"]["data"]["parsed"]["info"]
-            ta = info["tokenAmount"]
-            if ta["decimals"] == 0 and ta["amount"] == "1":
-                mints.append(info["mint"])
+    for ow in OWNERS_SOL:
+        for prog in TOKEN_PROGRAMS:
+            res = rpc("getTokenAccountsByOwner", [ow, {"programId": prog}, {"encoding": "jsonParsed"}])
+            for acc in res["value"]:
+                info = acc["account"]["data"]["parsed"]["info"]
+                ta = info["tokenAmount"]
+                if ta["decimals"] == 0 and ta["amount"] == "1":
+                    mints.append(info["mint"])
     pdas = {find_pda([b"position", b58decode(m)], WHIRLPOOL): m for m in mints}
     accs = accounts(list(pdas))
     out, notes = [], []
