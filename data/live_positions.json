@@ -1,0 +1,51 @@
+{
+ "ts_unix": 1795053921,
+ "ts_wib": "2026-11-19 09:05",
+ "owner": "0xDab08002447CEd3778D4f7e21CE1967fFd3BC2CF",
+ "positions": [
+  {
+   "key": "base:6611223",
+   "chain": "base",
+   "dex": "Uniswap v3",
+   "id": 6611223,
+   "pair": "WETH/USDC",
+   "fee_tier": 0.003,
+   "pool": "0x6c561b446416e1a00e8e93e221854d6ea4171372",
+   "price": 1774.105092,
+   "range": [
+    1779.394557,
+    1790.10248
+   ],
+   "in_range": false,
+   "value_usd": 993.25,
+   "fees_usd": 0.0,
+   "coin_amount": 0.559857,
+   "usdc_amount": 0.0
+  },
+  {
+   "key": "avax:90649",
+   "chain": "avax",
+   "dex": "Uniswap v3",
+   "id": 90649,
+   "pair": "WAVAX/USDC",
+   "fee_tier": 0.0005,
+   "pool": "0xfae3f424a0a47706811521e3ee268f00cfb5c45e",
+   "price": 7.009793,
+   "range": [
+    6.621409,
+    7.578395
+   ],
+   "in_range": true,
+   "value_usd": 740.27,
+   "fees_usd": 7.65,
+   "coin_amount": 60.8796,
+   "usdc_amount": 313.52
+  }
+ ],
+ "errors": [],
+ "notes": [],
+ "closed": [
+  "base:5210354"
+ ],
+ "closed_since": 1795053918
+}
