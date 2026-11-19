@@ -9,7 +9,7 @@
       "unit": "USDC per cbBTC",
       "lower": 61478.889,
       "upper": 67053.413,
-      "hedge_usd": "short BTC $1.060",
+      "hedge_usd": "short BTC $1.057 (re-hedge 19 Nov @63.703)",
       "close_actions": [
         "KELUAR ATAS (>67.053): SL GMX otomatis tutup short BTC di 67.100 -> tarik pool Orca cbBTC/USDC",
         "KELUAR BAWAH (<61.479): Stop Market GMX tambah short $1.067 di 61.400 -> tarik pool, swap cbBTC ke USDC, lalu Close SEMUA short BTC",
@@ -30,7 +30,8 @@
         "KELUAR BAWAH (<6.62): Stop Market GMX otomatis tambah short di 6.60 -> tarik pool, swap AVAX ke USDC, lalu Close SEMUA short AVAX",
         "Setelah tutup: batalkan order sisa di tab Orders GMX Avalanche"
       ],
-      "hedge_usd": "short AVAX $365,50"
+      "hedge_usd": "short AVAX $365,50",
+      "disabled": true
     }
   ],
   "near_pct": 0.4,
