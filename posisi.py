@@ -16,6 +16,7 @@ import time
 import urllib.request
 from datetime import datetime, timezone
 
+import inrange
 import orca_pos
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -40,7 +41,8 @@ STABLE = {"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",  # USDC Base
 SYMBOL = {"0x4200000000000000000000000000000000000006": "WETH",
           "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7": "WAVAX",
           "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": "USDC",
-          "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e": "USDC"}
+          "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e": "USDC",
+          "0x152b9d0fdc40c096757f570a51e494bd4b943e50": "BTC.b"}
 M = 2 ** 256
 Q128 = 2 ** 128
 
@@ -202,6 +204,11 @@ def main(force=False):
             for old in prev.get("positions", []):
                 if old.get("chain") == ch:
                     pos.append({**old, "stale": True})
+    # waktu in range + fee per jam in range (candle 5 menit Hyperliquid); gagal tidak menghentikan run
+    try:
+        errs += inrange.update(pos, prev.get("positions", []), deadline=time.time() + 40)
+    except Exception as e:  # noqa: BLE001
+        errs.append(f"inrange: {e}")
     now = time.time()
     data = {"ts_unix": int(now),
             "ts_wib": datetime.fromtimestamp(now + 7 * 3600, timezone.utc).strftime("%Y-%m-%d %H:%M"),
