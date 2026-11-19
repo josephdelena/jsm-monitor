@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""JSM posisi: baca posisi LP Uniswap v3 milik wallet EVM Ef langsung dari blockchain.
+"""JSM posisi: baca posisi LP milik Ef langsung dari blockchain:
+Uniswap v3 (wallet EVM, Base + Avalanche) dan Orca Whirlpool (wallet Solana, lewat orca_pos.py).
 
 Read-only (eth_call saja). Hasil: data/live_positions.json, maksimal sekali per ~55 menit.
 Isi per posisi yang masih punya likuiditas: chain, id NFT, pool, harga koin (USD),
@@ -14,6 +15,8 @@ import sys
 import time
 import urllib.request
 from datetime import datetime, timezone
+
+import orca_pos
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.environ.get("JSM_LIVE", os.path.join(HERE, "data", "live_positions.json"))
@@ -178,9 +181,12 @@ def main(force=False):
     closed = set(prev.get("closed", [])) if time.time() - prev.get("closed_since", 0) < 86400 else set()
     closed_since = prev.get("closed_since", 0) if closed else int(time.time())
     pos, errs, notes = [], [], []
-    for ch in CHAINS:
+    for ch in list(CHAINS) + ["solana"]:
         try:
-            got, skipped = read_chain(ch, closed)
+            if ch == "solana":
+                got, skipped = orca_pos.read_orca(STOP_AT[0] + 30)
+            else:
+                got, skipped = read_chain(ch, closed)
             pos += got
             notes += skipped
         except Exception as e:  # noqa: BLE001
