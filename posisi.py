@@ -22,7 +22,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.environ.get("JSM_LIVE", os.path.join(HERE, "data", "live_positions.json"))
 MIN_GAP = 55 * 60
 DEADLINE = 60  # detik
-OWNER = "0xDab08002447CEd3778D4f7e21CE1967fFd3BC2CF"  # alamat publik wallet EVM Ef
+OWNERS = ["0xDab08002447CEd3778D4f7e21CE1967fFd3BC2CF",  # alamat publik wallet EVM Ef
+          "0x3CC1C62b49620689De18dCC31D672e59b97f911b"]  # wallet EVM kedua (ETH Base, 19 Nov)
+OWNER = OWNERS[0]
 UA = {"User-Agent": "jsm-monitor/1.0", "Content-Type": "application/json"}
 
 CHAINS = {
@@ -117,12 +119,13 @@ def call(chain, to, data):
     raise RuntimeError(f"rpc {chain}: {last}")
 
 
-def read_chain(chain, closed):
+def read_chain(chain, closed, owner=None):
+    owner = owner or OWNER
     c = CHAINS[chain]
-    n = call(chain, c["npm"], "0x70a08231" + pad_addr(OWNER))[0]
+    n = call(chain, c["npm"], "0x70a08231" + pad_addr(owner))[0]
     out, skipped = [], []
     for i in range(n):
-        tid = call(chain, c["npm"], "0x2f745c59" + pad_addr(OWNER) + pad(i))[0]
+        tid = call(chain, c["npm"], "0x2f745c59" + pad_addr(owner) + pad(i))[0]
         key = f"{chain}:{tid}"
         if key in closed:
             continue
@@ -155,7 +158,7 @@ def read_chain(chain, closed):
             lo_px, up_px = 1 / up_px, 1 / lo_px
         coin = SYMBOL.get(t1.lower() if st else t0.lower(), "?")
         out.append({"key": f"{chain}:{tid}", "chain": chain, "dex": "Uniswap v3", "id": tid,
-                    "pair": f"{coin}/USDC", "fee_tier": fee / 1e6, "pool": pool,
+                    "pair": f"{coin}/USDC", "wallet": owner, "fee_tier": fee / 1e6, "pool": pool,
                     "price": round(coin_px, 6), "range": [round(lo_px, 6), round(up_px, 6)],
                     "in_range": tl <= tick < tu, "value_usd": round(val, 2), "fees_usd": round(fusd, 2),
                     "coin_amount": round((a1 / 10 ** d1) if st else (a0 / 10 ** d0), 6),
@@ -186,7 +189,11 @@ def main(force=False):
             if ch == "solana":
                 got, skipped = orca_pos.read_orca(STOP_AT[0] + 30)
             else:
-                got, skipped = read_chain(ch, closed)
+                got, skipped = [], []
+                for ow in OWNERS:
+                    g, s = read_chain(ch, closed, ow)
+                    got += g
+                    skipped += s
             pos += got
             notes += skipped
         except Exception as e:  # noqa: BLE001
@@ -198,7 +205,7 @@ def main(force=False):
     now = time.time()
     data = {"ts_unix": int(now),
             "ts_wib": datetime.fromtimestamp(now + 7 * 3600, timezone.utc).strftime("%Y-%m-%d %H:%M"),
-            "owner": OWNER, "positions": pos, "errors": errs, "notes": notes,
+            "owner": OWNERS, "positions": pos, "errors": errs, "notes": notes,
             "closed": sorted(closed), "closed_since": closed_since}
     if errs and not pos and not prev:
         print("posisi: semua gagal", errs)
