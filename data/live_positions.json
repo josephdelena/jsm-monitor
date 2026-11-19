@@ -1,8 +1,65 @@
 {
- "ts_unix": 1795071638,
- "ts_wib": "2026-11-19 14:00",
+ "ts_unix": 1795075238,
+ "ts_wib": "2026-11-19 15:00",
  "owner": "0xDab08002447CEd3778D4f7e21CE1967fFd3BC2CF",
  "positions": [
+  {
+   "key": "base:6612348",
+   "chain": "base",
+   "dex": "Uniswap v3",
+   "id": 6612348,
+   "pair": "WETH/USDC",
+   "fee_tier": 0.003,
+   "pool": "0x6c561b446416e1a00e8e93e221854d6ea4171372",
+   "price": 1804.095352,
+   "range": [
+    1800.874841,
+    1822.614429
+   ],
+   "in_range": true,
+   "value_usd": 1038.85,
+   "fees_usd": 0.0,
+   "coin_amount": 0.489934,
+   "usdc_amount": 154.96
+  },
+  {
+   "key": "avax:90698",
+   "chain": "avax",
+   "dex": "Uniswap v3",
+   "id": 90698,
+   "pair": "?/USDC",
+   "fee_tier": 0.0005,
+   "pool": "0x2e587b9e7aa638d7eb7db5fe7447513bc4d0d28b",
+   "price": 63667.223957,
+   "range": [
+    63630.449947,
+    64334.213311
+   ],
+   "in_range": true,
+   "value_usd": 1001.01,
+   "fees_usd": 0.05,
+   "coin_amount": 0.014895,
+   "usdc_amount": 52.7
+  },
+  {
+   "key": "orca:9peBGwopHZ8qKuBAg9t18PukjQoqgKrK8zNDGudXD8Bq",
+   "chain": "solana",
+   "dex": "Orca",
+   "id": "9peBGwopHZ8qKuBAg9t18PukjQoqgKrK8zNDGudXD8Bq",
+   "pair": "cbBTC/USDC",
+   "fee_tier": 0.0004,
+   "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
+   "price": 63664.57426,
+   "range": [
+    63528.727713,
+    64167.169959
+   ],
+   "in_range": true,
+   "value_usd": 1033.63,
+   "fees_usd": 0.21,
+   "coin_amount": 0.012763,
+   "usdc_amount": 221.05
+  },
   {
    "key": "orca:GuxMPuYkDmbxS8JvLUU5STBoCeJuAxgQMUAAuQFrLacB",
    "chain": "solana",
@@ -11,16 +68,16 @@
    "pair": "cbBTC/USDC",
    "fee_tier": 0.0004,
    "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
-   "price": 63698.937401,
+   "price": 63664.57426,
    "range": [
     61478.88905,
     67053.412863
    ],
    "in_range": true,
-   "value_usd": 2149.35,
-   "fees_usd": 11.41,
-   "coin_amount": 0.019919,
-   "usdc_amount": 880.51
+   "value_usd": 2148.66,
+   "fees_usd": 11.56,
+   "coin_amount": 0.020132,
+   "usdc_amount": 866.99
   }
  ],
  "errors": [],
