@@ -9,10 +9,10 @@
       "unit": "USDC per cbBTC",
       "lower": 61478.889,
       "upper": 67053.413,
-      "hedge_usd": "short BTC $1.066 @61.398 (20 Nov, SL 67.100)",
+      "hedge_usd": "TANPA hedge (short ditutup 20 Nov 07:21 @62.157). Re-hedge ~$1.057 saat pool hijau (~63.150)",
       "close_actions": [
-        "KELUAR ATAS (>67.053): SL GMX otomatis tutup short BTC di 67.100 -> tarik pool Orca cbBTC/USDC",
-        "KELUAR BAWAH (<61.479): TIDAK ada order otomatis. Tarik pool, swap cbBTC ke USDC, lalu Close short BTC $1.066",
+        "KELUAR ATAS (>67.053): tarik pool Orca cbBTC/USDC (tidak ada short)",
+        "KELUAR BAWAH (<61.479): pool jadi 100% cbBTC tanpa hedge — putuskan tahan atau swap ke USDC",
         "Setiap kali short ditutup: cek tab Orders GMX Arbitrum, batalkan SEMUA order sisa"
       ]
     },
