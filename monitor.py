@@ -135,6 +135,28 @@ def alert_text(pos, status, price, d_low, d_high):
     return "\n".join(lines)
 
 
+# ---------- alarm harga (posisi lending) ----------
+def classify_price_alert(price, below, prev_status=None, hyst_pct=0.5):
+    """Return 'below' kalau harga <= batas, 'ok' kalau di atas.
+    Hysteresis: dari 'below' baru dianggap 'ok' lagi setelah naik > batas + hyst_pct%."""
+    if below <= 0:
+        raise ValueError("batas harga tidak valid")
+    limit = below * (1 + hyst_pct / 100.0) if prev_status == "below" else below
+    return "below" if price <= limit else "ok"
+
+
+def price_alert_text(al, status, price):
+    if status == "ok":
+        head = "✅ AMAN LAGI"
+    else:
+        head = "🚨 HARGA TURUN KE BATAS WASPADA"
+    lines = [f"{head} — {al['label']}",
+             f"Harga {al['symbol']}: {fmt_price(price)} (batas waspada {fmt_price(al['below'])})"]
+    if al.get("note"):
+        lines.append(al["note"])
+    return "\n".join(lines)
+
+
 # ---------- telegram ----------
 def send(text):
     tok = os.environ.get("TELEGRAM_BOT_TOKEN")
@@ -244,6 +266,34 @@ def run_check(cfg):
                 # kirim gagal: jangan majukan status supaya run berikutnya coba lagi
                 entry["status"] = (prev or {}).get("status")
         st[pos["id"]] = entry
+    for al in cfg.get("price_alerts", []):
+        if al.get("disabled"):
+            continue
+        key = "alert:" + str(al.get("id"))
+        prev = st.get(key)
+        try:
+            price = price_binance(al["symbol"], False)
+            status = classify_price_alert(price, float(al["below"]), (prev or {}).get("status"))
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"{al.get('label', key)}: {e}")
+            continue
+        print(f"{key}: {fmt_price(price)} status={status}")
+        entry = {"status": status, "price": price, "ts": now,
+                 "last_alert": (prev or {}).get("last_alert", 0)}
+        if prev is None or prev.get("status") is None:
+            fire = status == "below"
+        elif status != prev.get("status"):
+            fire = True
+        else:
+            fire = status == "below" and now - prev.get("last_alert", 0) >= cfg["out_repeat_min"] * 60
+        if fire:
+            if send(price_alert_text(al, status, price)):
+                entry["last_alert"] = now
+            elif not os.environ.get("TELEGRAM_BOT_TOKEN"):
+                entry["last_alert"] = now
+            else:
+                entry["status"] = (prev or {}).get("status")
+        st[key] = entry
     # error berturut-turut -> kabari sekali per jam
     if errors:
         if now - st.get("_last_err_alert", 0) > 3600:

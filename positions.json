@@ -50,5 +50,28 @@
     ],
     "min_tvl_usd": 1000000,
     "alert_yield_pct_day": 0.35
-  }
+  },
+  "price_alerts": [
+    {
+      "id": "sui-navi",
+      "label": "Lending NAVI & NAVI 3 (Sui)",
+      "symbol": "SUIUSDT",
+      "below": 0.63,
+      "note": "Likuidasi: NAVI 3 di SUI ~0,617, NAVI di ~0,610. Tambah jaminan atau bayar sebagian utang sekarang."
+    },
+    {
+      "id": "btc-kamino",
+      "label": "Lending Kamino Main Market 1 & 2 (Solana)",
+      "symbol": "BTCUSDT",
+      "below": 56500,
+      "note": "Kalau BTC & SOL turun bareng ~8%, Kamino kena likuidasi (~BTC 54.300 / SOL 62,5). Kurangi utang atau tambah jaminan."
+    },
+    {
+      "id": "sol-kamino",
+      "label": "Lending Kamino Main Market 1 & 2 (Solana)",
+      "symbol": "SOLUSDT",
+      "below": 64.5,
+      "note": "Likuidasi Kamino MM2 kalau SOL saja turun: ~60,1. Kalau BTC & SOL turun bareng ~8%: ~SOL 62,5 / BTC 54.300."
+    }
+  ]
 }

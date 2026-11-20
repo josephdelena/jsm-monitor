@@ -70,4 +70,33 @@ class T2(unittest.TestCase):
     def test_nan(self):
         with mock.patch.object(m, "http_json", return_value={"data":{"price":"nan"}}):
             with self.assertRaises(RuntimeError): m.price_orca("x", True)
+class TPriceAlert(unittest.TestCase):
+    def test_classify_and_hysteresis(self):
+        self.assertEqual(m.classify_price_alert(0.62, 0.63), "below")
+        self.assertEqual(m.classify_price_alert(0.63, 0.63), "below")
+        self.assertEqual(m.classify_price_alert(0.64, 0.63), "ok")
+        self.assertEqual(m.classify_price_alert(0.632, 0.63, "below"), "below")
+        self.assertEqual(m.classify_price_alert(0.64, 0.63, "below"), "ok")
+
+    def test_text(self):
+        t = m.price_alert_text({"label": "L", "symbol": "SUIUSDT", "below": 0.63, "note": "N"}, "below", 0.62)
+        self.assertIn("WASPADA", t); self.assertIn("N", t)
+
+    def test_run_check_fires_once_then_repeat_and_recover(self):
+        cfg = {"near_pct": 0.4, "out_repeat_min": 30, "positions": [],
+               "price_alerts": [{"id": "sui", "label": "NAVI", "symbol": "SUIUSDT", "below": 0.63}]}
+        sent = []
+        prices = iter([0.62, 0.62, 0.62, 0.70])
+        times = iter([1000, 1100, 1000 + 31 * 60, 1000 + 32 * 60])
+        if os.path.exists(m.STATE): os.remove(m.STATE)
+        with mock.patch.object(m, "price_binance", side_effect=lambda s, i: next(prices)), \
+             mock.patch.object(m, "send", side_effect=lambda t: sent.append(t) or True), \
+             mock.patch.object(m.time, "time", side_effect=lambda: next(times)):
+            for _ in range(4):
+                m.run_check(cfg)
+        self.assertEqual(len(sent), 3)
+        self.assertIn("WASPADA", sent[0]); self.assertIn("WASPADA", sent[1]); self.assertIn("AMAN LAGI", sent[2])
+
+
+
 unittest.main(verbosity=1)
