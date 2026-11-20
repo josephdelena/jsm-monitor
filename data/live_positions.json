@@ -1,6 +1,6 @@
 {
- "ts_unix": 1795164646,
- "ts_wib": "2026-11-20 15:50",
+ "ts_unix": 1795168248,
+ "ts_wib": "2026-11-20 16:50",
  "owner": [
   "0xDab08002447CEd3778D4f7e21CE1967fFd3BC2CF",
   "0x3CC1C62b49620689De18dCC31D672e59b97f911b"
@@ -15,31 +15,31 @@
    "wallet": "0xDab08002447CEd3778D4f7e21CE1967fFd3BC2CF",
    "fee_tier": 0.0005,
    "pool": "0xd0b53d9277642d899df5c87a3966a349a798f224",
-   "price": 1753.294922,
+   "price": 1746.893921,
    "range": [
     1754.657831,
     1853.862165
    ],
    "in_range": false,
-   "value_usd": 1009.72,
+   "value_usd": 1006.04,
    "fees_usd": 0.4,
    "coin_amount": 0.5759,
    "usdc_amount": 0.0,
    "ir": {
     "since": 1795135849,
-    "last": 1795164600,
+    "last": 1795168200,
     "in_s": 2700,
-    "tot_s": 28500,
+    "tot_s": 32100,
     "fee0": 0.0
    },
    "inrange": {
-    "jam_dihitung": 7.92,
+    "jam_dihitung": 8.92,
     "jam_inrange": 0.75,
-    "pct_inrange": 9.5,
+    "pct_inrange": 8.4,
     "fee_dihitung_usd": 0.4,
     "fee_per_jam_inrange_usd": 0.5333,
-    "fee_hari_inrange_pct": 1.268,
-    "fee_hari_nyata_pct": 0.12
+    "fee_hari_inrange_pct": 1.272,
+    "fee_hari_nyata_pct": 0.107
    }
   },
   {
@@ -51,31 +51,31 @@
    "wallet": "0x3CC1C62b49620689De18dCC31D672e59b97f911b",
    "fee_tier": 0.0005,
    "pool": "0xd0b53d9277642d899df5c87a3966a349a798f224",
-   "price": 1753.293674,
+   "price": 1747.680421,
    "range": [
     1754.657831,
     1866.884073
    ],
    "in_range": false,
-   "value_usd": 2454.61,
+   "value_usd": 2446.75,
    "fees_usd": 0.86,
    "coin_amount": 1.4,
    "usdc_amount": 0.0,
    "ir": {
     "since": 1795135849,
-    "last": 1795164600,
+    "last": 1795168200,
     "in_s": 2700,
-    "tot_s": 28500,
+    "tot_s": 32100,
     "fee0": 0.0
    },
    "inrange": {
-    "jam_dihitung": 7.92,
+    "jam_dihitung": 8.92,
     "jam_inrange": 0.75,
-    "pct_inrange": 9.5,
+    "pct_inrange": 8.4,
     "fee_dihitung_usd": 0.86,
     "fee_per_jam_inrange_usd": 1.1467,
-    "fee_hari_inrange_pct": 1.121,
-    "fee_hari_nyata_pct": 0.106
+    "fee_hari_inrange_pct": 1.125,
+    "fee_hari_nyata_pct": 0.095
    }
   },
   {
@@ -87,31 +87,31 @@
    "wallet": "0xDab08002447CEd3778D4f7e21CE1967fFd3BC2CF",
    "fee_tier": 0.0005,
    "pool": "0x2e587b9e7aa638d7eb7db5fe7447513bc4d0d28b",
-   "price": 61867.889459,
+   "price": 61670.438645,
    "range": [
     62059.486109,
     65241.18091
    ],
    "in_range": false,
-   "value_usd": 972.74,
+   "value_usd": 969.63,
    "fees_usd": 0.51,
    "coin_amount": 0.015723,
    "usdc_amount": 0.0,
    "ir": {
     "since": 1795135849,
-    "last": 1795164600,
+    "last": 1795168200,
     "in_s": 4200,
-    "tot_s": 28500,
+    "tot_s": 32100,
     "fee0": 0.0
    },
    "inrange": {
-    "jam_dihitung": 7.92,
+    "jam_dihitung": 8.92,
     "jam_inrange": 1.17,
-    "pct_inrange": 14.7,
+    "pct_inrange": 13.1,
     "fee_dihitung_usd": 0.51,
     "fee_per_jam_inrange_usd": 0.4371,
-    "fee_hari_inrange_pct": 1.079,
-    "fee_hari_nyata_pct": 0.159
+    "fee_hari_inrange_pct": 1.082,
+    "fee_hari_nyata_pct": 0.142
    }
   },
   {
@@ -122,31 +122,31 @@
    "pair": "cbBTC/USDC",
    "fee_tier": 0.0004,
    "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
-   "price": 61845.300173,
+   "price": 61698.826076,
    "range": [
     61478.88905,
     67053.412863
    ],
    "in_range": true,
-   "value_usd": 2101.66,
-   "fees_usd": 20.81,
-   "coin_amount": 0.031615,
-   "usdc_amount": 146.41,
+   "value_usd": 2096.96,
+   "fees_usd": 21.01,
+   "coin_amount": 0.032562,
+   "usdc_amount": 87.93,
    "ir": {
     "since": 1795093246,
-    "last": 1795164600,
-    "in_s": 67500,
-    "tot_s": 71100,
+    "last": 1795168200,
+    "in_s": 71100,
+    "tot_s": 74700,
     "fee0": 12.29
    },
    "inrange": {
-    "jam_dihitung": 19.75,
-    "jam_inrange": 18.75,
-    "pct_inrange": 94.9,
-    "fee_dihitung_usd": 8.52,
-    "fee_per_jam_inrange_usd": 0.4544,
-    "fee_hari_inrange_pct": 0.519,
-    "fee_hari_nyata_pct": 0.493
+    "jam_dihitung": 20.75,
+    "jam_inrange": 19.75,
+    "pct_inrange": 95.2,
+    "fee_dihitung_usd": 8.72,
+    "fee_per_jam_inrange_usd": 0.4415,
+    "fee_hari_inrange_pct": 0.505,
+    "fee_hari_nyata_pct": 0.481
    }
   },
   {
@@ -157,31 +157,31 @@
    "pair": "cbBTC/USDC",
    "fee_tier": 0.0004,
    "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
-   "price": 61845.300173,
+   "price": 61698.826076,
    "range": [
     62071.898627,
     64889.845559
    ],
    "in_range": false,
-   "value_usd": 1004.32,
+   "value_usd": 1001.94,
    "fees_usd": 0.55,
    "coin_amount": 0.016239,
    "usdc_amount": 0.0,
    "ir": {
     "since": 1795135849,
-    "last": 1795164600,
+    "last": 1795168200,
     "in_s": 4200,
-    "tot_s": 28500,
+    "tot_s": 32100,
     "fee0": 0.0
    },
    "inrange": {
-    "jam_dihitung": 7.92,
+    "jam_dihitung": 8.92,
     "jam_inrange": 1.17,
-    "pct_inrange": 14.7,
+    "pct_inrange": 13.1,
     "fee_dihitung_usd": 0.55,
     "fee_per_jam_inrange_usd": 0.4714,
-    "fee_hari_inrange_pct": 1.127,
-    "fee_hari_nyata_pct": 0.166
+    "fee_hari_inrange_pct": 1.129,
+    "fee_hari_nyata_pct": 0.148
    }
   },
   {
@@ -192,31 +192,31 @@
    "pair": "cbBTC/USDC",
    "fee_tier": 0.0004,
    "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
-   "price": 61845.300173,
+   "price": 61698.826076,
    "range": [
     61972.667957,
     65962.759227
    ],
    "in_range": false,
-   "value_usd": 1113.22,
+   "value_usd": 1110.58,
    "fees_usd": 0.69,
    "coin_amount": 0.018,
    "usdc_amount": 0.0,
    "ir": {
     "since": 1795139455,
-    "last": 1795164600,
+    "last": 1795168200,
     "in_s": 3300,
-    "tot_s": 24900,
+    "tot_s": 28500,
     "fee0": 0.36
    },
    "inrange": {
-    "jam_dihitung": 6.92,
+    "jam_dihitung": 7.92,
     "jam_inrange": 0.92,
-    "pct_inrange": 13.3,
+    "pct_inrange": 11.6,
     "fee_dihitung_usd": 0.33,
     "fee_per_jam_inrange_usd": 0.36,
-    "fee_hari_inrange_pct": 0.776,
-    "fee_hari_nyata_pct": 0.103
+    "fee_hari_inrange_pct": 0.778,
+    "fee_hari_nyata_pct": 0.09
    }
   },
   {
@@ -227,31 +227,31 @@
    "pair": "SOL/USDC",
    "fee_tier": 0.0004,
    "pool": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE",
-   "price": 72.552195,
+   "price": 72.177165,
    "range": [
     72.8124,
     77.997972
    ],
    "in_range": false,
-   "value_usd": 1088.28,
+   "value_usd": 1082.66,
    "fees_usd": 0.67,
    "coin_amount": 15.0,
    "usdc_amount": 0.0,
    "ir": {
     "since": 1795090140,
-    "last": 1795164600,
+    "last": 1795168200,
     "in_s": 43800,
-    "tot_s": 74400,
+    "tot_s": 78000,
     "fee0": 0.0
    },
    "inrange": {
-    "jam_dihitung": 20.67,
+    "jam_dihitung": 21.67,
     "jam_inrange": 12.17,
-    "pct_inrange": 58.9,
+    "pct_inrange": 56.2,
     "fee_dihitung_usd": 0.67,
     "fee_per_jam_inrange_usd": 0.0551,
-    "fee_hari_inrange_pct": 0.121,
-    "fee_hari_nyata_pct": 0.071
+    "fee_hari_inrange_pct": 0.122,
+    "fee_hari_nyata_pct": 0.069
    }
   }
  ],
