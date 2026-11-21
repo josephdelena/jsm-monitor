@@ -72,6 +72,13 @@
       "symbol": "SOLUSDT",
       "below": 62,
       "note": "Kamino SOL/BTC Market: likuidasi ~SOL 58,9 / BTC 50.300 kalau turun bareng. Tarik LP SOL/cbBTC lalu deposit ke Kamino."
+    },
+    {
+      "id": "xrp-venus",
+      "label": "Lending Venus 1 & 2 (BNB)",
+      "symbol": "XRPUSDT",
+      "below": 0.76,
+      "note": "Venus 1 & 2 likuidasi kalau XRP saja turun ke ~0,69 (atau semua koin turun bareng ~13-19%). Bayar sebagian utang USDT."
     }
   ]
 }
