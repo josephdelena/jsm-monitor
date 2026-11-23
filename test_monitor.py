@@ -97,6 +97,64 @@ class TPriceAlert(unittest.TestCase):
         self.assertEqual(len(sent), 3)
         self.assertIn("WASPADA", sent[0]); self.assertIn("WASPADA", sent[1]); self.assertIn("AMAN LAGI", sent[2])
 
+class TPriceAlertAbove(unittest.TestCase):
+    def test_above_fires_and_hysteresis_back_to_ok(self):
+        c = m.classify_price_alert
+        self.assertEqual(c(63000, above=63150), "ok")
+        self.assertEqual(c(63150, above=63150), "above")
+        self.assertEqual(c(63200, above=63150), "above")
+        # hysteresis 0.5%: batas keluar = 63150*0.995 = 62834.25
+        self.assertEqual(c(62900, above=63150, prev_status="above"), "above")
+        self.assertEqual(c(62800, above=63150, prev_status="above"), "ok")
+        # tanpa prev, 62900 sudah ok
+        self.assertEqual(c(62900, above=63150), "ok")
+
+    def test_below_only_unchanged(self):
+        c = m.classify_price_alert
+        self.assertEqual(c(0.62, 0.63), "below")
+        self.assertEqual(c(0.632, 0.63, "below"), "below")
+        self.assertEqual(c(0.64, 0.63, "below"), "ok")
+        self.assertEqual(c(1e9, 0.63), "ok")  # tanpa batas atas tidak pernah 'above'
+        with self.assertRaises(ValueError): c(1, 0)
+        with self.assertRaises(ValueError): c(1, None)
+        with self.assertRaises(ValueError): c(1, 0, above=0)
+        t = m.price_alert_text({"label": "L", "symbol": "SUIUSDT", "below": 0.63}, "below", 0.62)
+        self.assertIn("HARGA TURUN KE BATAS WASPADA", t); self.assertIn("(batas waspada 0.630000)", t)
+
+    def test_both_thresholds(self):
+        c = m.classify_price_alert
+        self.assertEqual(c(50, 40, above=60), "ok")
+        self.assertEqual(c(40, 40, above=60), "below")
+        self.assertEqual(c(60, 40, above=60), "above")
+        self.assertEqual(c(40.1, 40, "below", above=60), "below")
+        self.assertEqual(c(41, 40, "below", above=60), "ok")
+        self.assertEqual(c(59.8, 40, "above", above=60), "above")
+        self.assertEqual(c(59.6, 40, "above", above=60), "ok")
+        # langsung lompat dari below ke above
+        self.assertEqual(c(61, 40, "below", above=60), "above")
+
+    def test_above_text(self):
+        al = {"label": "Re-hedge", "symbol": "BTCUSDT", "above": 63150, "note": "NOTE-X"}
+        t = m.price_alert_text(al, "above", 63200)
+        self.assertIn("NAIK KE BATAS ATAS", t); self.assertIn("Re-hedge", t)
+        self.assertIn("Harga BTCUSDT: 63,200.00 (batas atas 63,150.00)", t); self.assertIn("NOTE-X", t)
+        self.assertIn("AMAN LAGI", m.price_alert_text(al, "ok", 62000))
+
+    def test_run_check_above_fires_repeat_recover(self):
+        cfg = {"near_pct": 0.4, "out_repeat_min": 30, "positions": [],
+               "price_alerts": [{"id": "btc", "label": "RH", "symbol": "BTCUSDT", "above": 63150}]}
+        sent = []
+        prices = iter([62000, 63200, 63300, 63300, 62000])
+        times = iter([1000, 1100, 1200, 1100 + 31 * 60, 1100 + 32 * 60])
+        if os.path.exists(m.STATE): os.remove(m.STATE)
+        with mock.patch.object(m, "price_binance", side_effect=lambda s, i: next(prices)), \
+             mock.patch.object(m, "send", side_effect=lambda t: sent.append(t) or True), \
+             mock.patch.object(m.time, "time", side_effect=lambda: next(times)):
+            for _ in range(5):
+                m.run_check(cfg)
+        # ok (tidak kirim), above (kirim), above <30m (dedupe), above >30m (ulang), ok (aman lagi)
+        self.assertEqual(len(sent), 3)
+        self.assertIn("BATAS ATAS", sent[0]); self.assertIn("BATAS ATAS", sent[1]); self.assertIn("AMAN LAGI", sent[2])
 
 
 unittest.main(verbosity=1)

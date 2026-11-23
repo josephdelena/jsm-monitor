@@ -136,22 +136,48 @@ def alert_text(pos, status, price, d_low, d_high):
 
 
 # ---------- alarm harga (posisi lending) ----------
-def classify_price_alert(price, below, prev_status=None, hyst_pct=0.5):
-    """Return 'below' kalau harga <= batas, 'ok' kalau di atas.
-    Hysteresis: dari 'below' baru dianggap 'ok' lagi setelah naik > batas + hyst_pct%."""
-    if below <= 0:
+def classify_price_alert(price, below=None, prev_status=None, hyst_pct=0.5, above=None):
+    """Return 'below' | 'above' | 'ok'.
+    'below' kalau harga <= batas bawah; 'above' kalau harga >= batas atas.
+    Hysteresis: dari 'below' baru 'ok' lagi setelah naik > below*(1+h);
+    dari 'above' baru 'ok' lagi setelah turun < above*(1-h).
+    Batas None / <= 0 diabaikan; kalau keduanya tidak valid -> ValueError."""
+    below = below if (below is not None and below > 0) else None
+    above = above if (above is not None and above > 0) else None
+    if below is None and above is None:
         raise ValueError("batas harga tidak valid")
-    limit = below * (1 + hyst_pct / 100.0) if prev_status == "below" else below
-    return "below" if price <= limit else "ok"
+    h = hyst_pct / 100.0
+    if below is not None:
+        limit = below * (1 + h) if prev_status == "below" else below
+        if price <= limit:
+            return "below"
+    if above is not None:
+        limit = above * (1 - h) if prev_status == "above" else above
+        if price >= limit:
+            return "above"
+    return "ok"
+
+
+def _thr(al, key):
+    v = al.get(key)
+    return float(v) if v is not None else None
 
 
 def price_alert_text(al, status, price):
     if status == "ok":
         head = "✅ AMAN LAGI"
+    elif status == "above":
+        head = "🚨 HARGA NAIK KE BATAS ATAS"
     else:
         head = "🚨 HARGA TURUN KE BATAS WASPADA"
+    lims = []
+    below, above = _thr(al, "below"), _thr(al, "above")
+    if below is not None and below > 0 and status in ("below", "ok"):
+        lims.append(f"batas waspada {fmt_price(below)}")
+    if above is not None and above > 0 and status in ("above", "ok"):
+        lims.append(f"batas atas {fmt_price(above)}")
     lines = [f"{head} — {al['label']}",
-             f"Harga {al['symbol']}: {fmt_price(price)} (batas waspada {fmt_price(al['below'])})"]
+             f"Harga {al['symbol']}: {fmt_price(price)} ({', '.join(lims)})"]
     if al.get("note"):
         lines.append(al["note"])
     return "\n".join(lines)
@@ -273,7 +299,8 @@ def run_check(cfg):
         prev = st.get(key)
         try:
             price = price_binance(al["symbol"], False)
-            status = classify_price_alert(price, float(al["below"]), (prev or {}).get("status"))
+            status = classify_price_alert(price, _thr(al, "below"), (prev or {}).get("status"),
+                                          above=_thr(al, "above"))
         except Exception as e:  # noqa: BLE001
             errors.append(f"{al.get('label', key)}: {e}")
             continue
@@ -281,11 +308,11 @@ def run_check(cfg):
         entry = {"status": status, "price": price, "ts": now,
                  "last_alert": (prev or {}).get("last_alert", 0)}
         if prev is None or prev.get("status") is None:
-            fire = status == "below"
+            fire = status in ("below", "above")
         elif status != prev.get("status"):
             fire = True
         else:
-            fire = status == "below" and now - prev.get("last_alert", 0) >= cfg["out_repeat_min"] * 60
+            fire = status in ("below", "above") and now - prev.get("last_alert", 0) >= cfg["out_repeat_min"] * 60
         if fire:
             if send(price_alert_text(al, status, price)):
                 entry["last_alert"] = now

@@ -79,6 +79,13 @@
       "symbol": "XRPUSDT",
       "below": 0.76,
       "note": "Venus 1 & 2 likuidasi kalau XRP saja turun ke ~0,69 (atau semua koin turun bareng ~13-19%). Bayar sebagian utang USDT."
+    },
+    {
+      "id": "btc-rehedge",
+      "label": "Re-hedge lock&rehedge Orca cbBTC (GuxM)",
+      "symbol": "BTCUSDT",
+      "above": 63150,
+      "note": "Pool lock&rehedge hijau: pasang short BTC ~$1.050 (50% pool) di GMX/Hyperliquid. Setelah itu hapus/ubah alert ini."
     }
   ]
 }
