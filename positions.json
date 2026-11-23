@@ -81,11 +81,25 @@
       "note": "Venus 1 & 2 likuidasi kalau XRP saja turun ke ~0,69 (atau semua koin turun bareng ~13-19%). Bayar sebagian utang USDT."
     },
     {
-      "id": "btc-rehedge",
-      "label": "Re-hedge lock&rehedge Orca cbBTC (GuxM)",
+      "id": "hedge-sol-orca",
+      "label": "Hedge Orca SOL/USDC (tengah range 71,31-79,70)",
+      "symbol": "SOLUSDT",
+      "above": 75.39,
+      "note": "Harga di tengah range: pasang short SOL ~$555 (50% pool) di GMX/Hyperliquid. Setelah short terpasang, hapus alert ini."
+    },
+    {
+      "id": "hedge-cbbtc-orca2",
+      "label": "Hedge Orca cbBTC/USDC #2 (tengah range 59.448-68.627)",
       "symbol": "BTCUSDT",
-      "above": 63150,
-      "note": "Pool lock&rehedge hijau: pasang short BTC ~$1.050 (50% pool) di GMX/Hyperliquid. Setelah itu hapus/ubah alert ini."
+      "above": 63873,
+      "note": "Harga di tengah range: pasang short BTC ~$550 (50% pool) di GMX/Hyperliquid. Setelah short terpasang, hapus alert ini."
+    },
+    {
+      "id": "hedge-cbbtc-lockrehedge",
+      "label": "Re-hedge lock&rehedge Orca cbBTC (tengah range 61.479-67.053)",
+      "symbol": "BTCUSDT",
+      "above": 64206,
+      "note": "Harga di tengah range: pasang short BTC ~$1.045 (50% pool) di GMX/Hyperliquid. Setelah short terpasang, hapus alert ini."
     }
   ]
 }
