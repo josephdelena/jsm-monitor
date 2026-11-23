@@ -81,13 +81,6 @@
       "note": "Venus 1 & 2 likuidasi kalau XRP saja turun ke ~0,69 (atau semua koin turun bareng ~13-19%). Bayar sebagian utang USDT."
     },
     {
-      "id": "hedge-sol-orca",
-      "label": "Hedge Orca SOL/USDC (tengah range 71,31-79,70)",
-      "symbol": "SOLUSDT",
-      "above": 75.39,
-      "note": "Harga di tengah range: pasang short SOL ~$555 (50% pool) di GMX/Hyperliquid. Setelah short terpasang, hapus alert ini."
-    },
-    {
       "id": "hedge-cbbtc-orca2",
       "label": "Hedge Orca cbBTC/USDC #2 (tengah range 59.448-68.627)",
       "symbol": "BTCUSDT",
