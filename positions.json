@@ -79,13 +79,6 @@
       "symbol": "XRPUSDT",
       "below": 0.76,
       "note": "Venus 1 & 2 likuidasi kalau XRP saja turun ke ~0,69 (atau semua koin turun bareng ~13-19%). Bayar sebagian utang USDT."
-    },
-    {
-      "id": "hedge-cbbtc-lockrehedge",
-      "label": "Re-hedge lock&rehedge Orca cbBTC (tengah range 61.479-67.053)",
-      "symbol": "BTCUSDT",
-      "above": 64206,
-      "note": "Harga di tengah range: pasang short BTC ~$1.075 (50% pool) di GMX wallet Joseph 1, 3x, TP 61.500, SL 67.053. Setelah short terpasang, hapus alert ini."
     }
   ]
 }
