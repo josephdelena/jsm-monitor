@@ -35,7 +35,8 @@ HEDGE_FRAC = 0.5           # short ~50% nilai pool
 ALERT_NET = 0.10           # %/hari -> kirim alert
 MAX_STALE_H = 3            # baris terakhir lebih tua dari ini -> pool dilewati
 RUN_DEADLINE = 120         # detik, batas total panggilan Hyperliquid
-SKIP = {"pharaoh-avax-usdc"}  # feeGrowth tidak mencerminkan fee LP (terbaca 0)
+SKIP = {"pharaoh-avax-usdc",  # feeGrowth tidak mencerminkan fee LP (terbaca 0)
+        "uni-base-weth-cbbtc-005"}  # ETH/BTC: bukan pair USD, hedge 1 koin & sigma 1 koin tidak berlaku; data mentah tetap dicatat
 HL = "https://api.hyperliquid.xyz/info"
 UA = {"User-Agent": "jsm-monitor/1.0", "Content-Type": "application/json"}
 

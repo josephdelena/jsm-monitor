@@ -59,6 +59,9 @@ POOLS = [
     ("uni-eth-weth-usdc-03", "eth", "0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8", "ETH"),
     ("uni-eth-weth-usdt-001", "eth", "0xc7bbec68d12a0d1830360f8ec58fa599ba1b0e9b", "ETH"),
     ("uni-eth-wbtc-usdt-005", "eth", "0x56534741cd8b152df6d48adf7ac51f75169a83b2", "BTC"),
+    # tambahan 24 Nov 2026: pool crypto/crypto (token0=WETH, token1=cbBTC, bukan USD). Koin "ETH" cuma
+    # label; peluang.py melewati pool ini (SKIP) karena hedge 1 koin tidak cocok untuk pasangan ETH/BTC.
+    ("uni-base-weth-cbbtc-005", "base", "0x7aea2e8a3843516afa07293a10ac8e49906dabd1", "ETH"),
 ]
 
 FIELDS = ["ts_utc", "pool", "chain", "fg0", "fg1", "liquidity", "sqrt_price", "tick", "q"]
