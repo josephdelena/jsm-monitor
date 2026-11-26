@@ -2,18 +2,18 @@
   "positions": [
     {
       "id": "orca-cbbtc-usdc-2",
-      "label": "Orca cbBTC/USDC 0.04% ($2.151)",
+      "label": "Orca cbBTC/USDC 0.04% No 28 upsky ($2.151)",
       "source": "orca",
       "pool": "HxA6SKW5qA4o12fjVgTpXdq2YnZ5Zv1s7SB4FFomsyLM",
       "invert": false,
       "unit": "USDC per cbBTC",
-      "lower": 61478.889,
-      "upper": 67053.413,
-      "hedge_usd": "TANPA hedge (short ditutup 20 Nov 07:21 @62.157). Re-hedge ~$1.057 saat pool hijau (~63.150)",
+      "lower": 59805.356,
+      "upper": 66785.748,
+      "hedge_usd": "TANPA hedge (fase up in the sky, wallet BWwc, 0,03399 cbBTC)",
       "close_actions": [
-        "KELUAR ATAS (>67.053): tarik pool Orca cbBTC/USDC (tidak ada short)",
-        "KELUAR BAWAH (<61.479): pool jadi 100% cbBTC tanpa hedge — putuskan tahan atau swap ke USDC",
-        "Setiap kali short ditutup: cek tab Orders GMX Arbitrum, batalkan SEMUA order sisa"
+        "KELUAR ATAS (>66.786): tarik pool = impas modal $2.151 + fee; simpan USDC, masuk lagi hanya kalau fee BTC 7 hari >=1,5x",
+        "KELUAR BAWAH (<59.805): JANGAN jual. Tunggu 12 jam berturut-turut di bawah range (harga pool), lalu pasang ulang up in the sky",
+        "Upsky tidak di-hedge"
       ]
     },
     {
