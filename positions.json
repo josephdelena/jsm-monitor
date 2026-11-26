@@ -15,23 +15,6 @@
         "KELUAR BAWAH (<59.805): JANGAN jual. Tunggu 12 jam berturut-turut di bawah range (harga pool), lalu pasang ulang up in the sky",
         "Upsky tidak di-hedge"
       ]
-    },
-    {
-      "id": "uni-avax-usdc",
-      "label": "Uniswap AVAX/USDC 0.05% ($744)",
-      "source": "binance",
-      "symbol": "AVAXUSDT",
-      "invert": false,
-      "unit": "USD per AVAX",
-      "lower": 6.62141,
-      "upper": 7.57839,
-      "close_actions": [
-        "KELUAR ATAS (>7.58): SL GMX otomatis tutup short di 7.60 -> tarik pool Uniswap (Remove liquidity 100%)",
-        "KELUAR BAWAH (<6.62): Stop Market GMX otomatis tambah short di 6.60 -> tarik pool, swap AVAX ke USDC, lalu Close SEMUA short AVAX",
-        "Setelah tutup: batalkan order sisa di tab Orders GMX Avalanche"
-      ],
-      "hedge_usd": "short AVAX $365,50",
-      "disabled": true
     }
   ],
   "near_pct": 0.4,
